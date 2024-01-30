@@ -177,6 +177,7 @@ void currency_conversion()
     }
 }
 
+/*DEFINING FUNCTION FOR GROCERIES*/ 
 void estimateGroceries()
 {
     const char *groceries[MAX_GROCERIES] = {"Bread", "Milk(1L)", "Eggs(1 Dozen)", "Cheese","Cooking Oil(1L)", "Rice(5kg)","Sugar(1kg)", "Salt(1kg)",};
@@ -204,7 +205,7 @@ void estimateGroceries()
         }
     } while (choice != 0);
 
-    // Display user's choices and total amount
+    /*DISPLAYING USER'S CHOICES AND TOTAL AMOUNT*/
     printf("\nYour Choices:\n");
     for (int i = 0; i < MAX_GROCERIES; i++)
     {
@@ -215,7 +216,9 @@ void estimateGroceries()
     }
 
     printf("\nYour Estimated Grocery Budget is: Rs %.2f\n", totalAmount);
-};
+}
+
+/*DEFINING FUNCTION TO DISPLAY GROCERIES*/
 void displayGroceries(const char *groceries[], const double prices[])
 {
     printf("\nList of items:\n");
@@ -225,6 +228,7 @@ void displayGroceries(const char *groceries[], const double prices[])
     }
 }
 
+/*DEFINING FUNCTION TO CALCULATE TOTAL AMOUNT*/
 double calculateTotal(const int choices[], const double prices[], int size)
 {
     double total = 0;
