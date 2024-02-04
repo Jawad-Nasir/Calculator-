@@ -1,6 +1,10 @@
+/*Project by:
+Hamza Nizamani SE231027
+Abdullah Nabi Ahmed SE231040
+Jawad Nasir SE231041
+*/
 #include <stdio.h>
 
-#define MAX_GROCERIES 8
 void calculate_bill();
 void currency_conversion();
 void estimateGroceries();
@@ -45,7 +49,7 @@ int main()
     return 0;
 }
 
-/* DEFINING THE FUNCTION FOR BILL CALCULATION */
+// Bill function
 void calculate_bill()
 {
     int choose, curr_units, prev_units, units;
@@ -100,7 +104,7 @@ void calculate_bill()
     }
 }
 
-/* DEFINING THE FUNCTION FOR CURRENCY EXCHANGE */
+// Currency conversion function
 void currency_conversion()
 {
     int currency;
@@ -176,38 +180,37 @@ void currency_conversion()
         break;
     }
 }
-
-/*DEFINING FUNCTION FOR GROCERIES*/ 
+// Groceries function
 void estimateGroceries()
 {
-    const char *groceries[MAX_GROCERIES] = {"Bread", "Milk(1L)", "Eggs(1 Dozen)", "Cheese","Cooking Oil(1L)", "Rice(5kg)","Sugar(1kg)", "Salt(1kg)",};
-    const double prices[MAX_GROCERIES] = {120.50,180.20,320.80,3000.50,2400.87,1800.85,180.00,200.00};
+    const char *groceries[8] = {"Bread", "Milk(1L)", "Eggs(1 Dozen)", "Cheese", "Cooking Oil(1L)", "Rice(5kg)", "Sugar(1kg)", "Salt(1kg)"};
+    const double prices[8] = {120.50, 180.20, 320.80, 3000.50, 2400.87, 1800.85, 180.00, 200.00};
 
-    int userChoices[MAX_GROCERIES] = {0};
+    int userChoices[8] = {0};
     int choice;
     double totalAmount = 0;
 
-    displayGroceries(groceries, prices);
-
     do
     {
+        displayGroceries(groceries, prices);
+
         printf("\nEnter the number of the grocery to add to your basket (0 to finish): ");
         scanf("%d", &choice);
 
-        if (choice >= 1 && choice <= MAX_GROCERIES)
+        if (choice >= 1 && choice <= 8)
         {
             userChoices[choice - 1]++;
             totalAmount += prices[choice - 1];
         }
         else if (choice != 0)
         {
-            printf("Invalid choice. Please enter a number between 1 and %d.\n", MAX_GROCERIES);
+            printf("Invalid choice. Please enter a number between 1 and %d.\n", 8);
         }
+
     } while (choice != 0);
 
-    /*DISPLAYING USER'S CHOICES AND TOTAL AMOUNT*/
     printf("\nYour Choices:\n");
-    for (int i = 0; i < MAX_GROCERIES; i++)
+    for (int i = 0; i < 8; i++)
     {
         if (userChoices[i] > 0)
         {
@@ -218,23 +221,12 @@ void estimateGroceries()
     printf("\nYour Estimated Grocery Budget is: Rs %.2f\n", totalAmount);
 }
 
-/*DEFINING FUNCTION TO DISPLAY GROCERIES*/
+// For displaying groceries function
 void displayGroceries(const char *groceries[], const double prices[])
 {
     printf("\nList of items:\n");
-    for (int i = 0; i < MAX_GROCERIES; i++)
+    for (int i = 0; i < 8; i++)
     {
         printf("%d. %-15s \t- Rs %.2f\n", i + 1, groceries[i], prices[i]);
     }
-}
-
-/*DEFINING FUNCTION TO CALCULATE TOTAL AMOUNT*/
-double calculateTotal(const int choices[], const double prices[], int size)
-{
-    double total = 0;
-    for (int i = 0; i < size; i++)
-    {
-        total += choices[i] * prices[i];
-    }
-    return total;
 }
